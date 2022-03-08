@@ -1,0 +1,2 @@
+# ABC_News_CMS
+ABC News Asia Sdn. Bhd. is an independent news journalist company, and they are currently looking for solution to digitalize their current news publication to an online portal. ABC New Asia would like to have a landing page which provides the ongoing news headlines and business trends. Furthermore, they wanted to categorize the news within their own categories and display these categories within the landing page. The news publication requires several inputs, such as headline title, headline banner, news details, authors name and published dates.
