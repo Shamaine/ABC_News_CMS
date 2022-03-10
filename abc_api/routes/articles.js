@@ -62,7 +62,7 @@ router.delete("/:id", verifyToken, async (req, res) => {
 });
 
 //GET ARTICLE
-router.get("/:id", verifyToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const article = await Article.findById(req.params.id);
     res.status(200).json(article);

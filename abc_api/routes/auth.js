@@ -12,7 +12,7 @@ const { verifyTokenAndAdmin } = require("./verifyToken");
 //Use async function to await user
 //Encrypt password with CrptoJS AES- Advanced Encryption Standard algorithm
 //CryptoJS.AES.encrypt("password", "Secret Key")
-router.post("/register", verifyTokenAndAdmin, async (req, res) => {
+router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,

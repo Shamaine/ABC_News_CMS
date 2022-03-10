@@ -1,22 +1,37 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router";
+import axios from "axios";
 import "./singlePost.css";
 
 export default function SinglePost() {
+  //useLocation to get the post id path location
+  const location = useLocation();
+  //split the pathname and only get the id
+  const path = location.pathname.split("/")[2];
+  //Use Hook Set State to set the articles data from mongodb
+  const [articles, setArticles] = useState([]);
+  // use useEffect to get the articles id
+  useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get("/articles/" + path);
+      //set the page article to be the database article
+      setArticles(res.data);
+    };
+    getPost();
+  }, [path]);
+
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
         <div className="singlePostContainer">
-          <img
-            className="singlePostImg"
-            src="https://images.unsplash.com/photo-1645758508038-d0ef26918781?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt=""
-          />
+          <img className="singlePostImg" src={articles.photo} alt="" />
           <div className="singlePostBanner">
-            <span className="singlePostBannerText">Breaking!</span>
+            <span className="singlePostBannerText">{articles.banner}</span>
           </div>
         </div>
         <h1 className="singlePostTitle">
-          Write A News
+          {articles.title}
           <div className="singlePostEdit">
             <i className="singlePostIcon far fa-edit"></i>
             <i className="singlePostIcon far fa-trash-alt"></i>
@@ -26,33 +41,15 @@ export default function SinglePost() {
           <span>
             Author:
             <b className="singlePostAuthor">
-              <Link className="link" to="/posts?username=Admin">
-                Admin
+              {/*When the Journalist Name is clicked, show only the post created by the Journalist*/}
+              <Link className="link" to={`/?user=${articles.username}`}>
+                {articles.username}
               </Link>
             </b>
           </span>
-          <span>1 day ago</span>
+          <span>{new Date(articles.createdAt).toDateString()}</span>
         </div>
-        <p className="singlePostDesc">
-          An About Me page is one of the most important parts of your portfolio,
-          website, or blog. This page is where prospective employers, potential
-          clients, website users, and other professional and personal
-          connections go to learn about who you are and what you do. And it's an
-          ideal resource for promoting your professional brand. It can be
-          challenging to write about yourself. However, the good news is if you
-          follow the formula and tips below, you should be able to generate an
-          engaging About Me statement without too much of a struggle.
-          <br />
-          <br />
-          An About Me page is one of the most important parts of your portfolio,
-          website, or blog. This page is where prospective employers, potential
-          clients, website users, and other professional and personal
-          connections go to learn about who you are and what you do. And it's an
-          ideal resource for promoting your professional brand. It can be
-          challenging to write about yourself. However, the good news is if you
-          follow the formula and tips below, you should be able to generate an
-          engaging About Me statement without too much of a struggle.
-        </p>
+        <p className="singlePostDesc">{articles.details}</p>
       </div>
     </div>
   );

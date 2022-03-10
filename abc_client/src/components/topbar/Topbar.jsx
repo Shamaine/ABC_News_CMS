@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
 import "./topbar.css";
 
 export default function Topbar() {
   //Define Journalists and Admin as user Logged In status
-  const user = true;
+  const { user, dispatch } = useContext(Context);
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
   return (
     <div className="top">
       <div className="topLeft">
@@ -28,7 +33,11 @@ export default function Topbar() {
               </Link>
             </li>
           )}
-          {user && <li className="topListItem">LOGOUT</li>}
+          {user && (
+            <li className="topListItem" onClick={handleLogout}>
+              {user && "LOGOUT"}
+            </li>
+          )}
           {user && (
             <li className="topListItem">
               <Link className="link" to="/register">
@@ -52,19 +61,14 @@ export default function Topbar() {
             />
           </Link>
         ) : (
-          {
-            /*Else,  Display Login Tab*/
-          }(
-            <ul className="topList">
-              <li className="topListItem">
-                <Link className="link" to="/login">
-                  LOGIN
-                </Link>
-              </li>
-            </ul>
-          )
+          <ul className="topList">
+            <li className="topListItem">
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
+            </li>
+          </ul>
         )}
-        <i className="topSearchIcon fas fa-search"></i>
       </div>
     </div>
   );

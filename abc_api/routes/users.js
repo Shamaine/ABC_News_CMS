@@ -36,7 +36,9 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 //Only Admin can delete Journalist
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
+    const user = await User.findById(req.params.id);
     try {
+      await Article.deleteMany({ username: user.username });
       await User.findByIdAndDelete(req.params.id);
       res.status(200).json("User has been deleted...");
     } catch (err) {

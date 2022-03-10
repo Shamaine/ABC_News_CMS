@@ -1,9 +1,22 @@
+import { useContext } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
+import { Context } from "../../context/Context";
 
 export default function Sidebar() {
+  //Fetch category data from database using Use Effect and UseState
+  const [cats, setCats] = useState([]);
   //Define Journalists and Admin as user Logged In status
-  const user = true;
+  const { user } = useContext(Context);
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("/categories");
+      setCats(res.data);
+    };
+    getCats();
+  }, []);
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -16,72 +29,20 @@ export default function Sidebar() {
           NEWS CATEGORIES
         </span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">
-            {user && (
-              <Link className="link" to="/upcategories">
-                <i className="catIcon far fa-edit"></i>
+          {cats.map((c) => (
+            <li className="sidebarListItem">
+              {user && (
+                <Link className="link" to="/upcategories">
+                  <i className="catIcon far fa-edit"></i>
+                </Link>
+              )}
+              {user && <i className="catIcon far fa-trash-alt"></i>}
+              {/*When the categories name  is clicked, show only the post created by category*/}
+              <Link className="link" to={`/?cat=${c.name}`}>
+                {c.name}
               </Link>
-            )}
-            {user && <i className="catIcon far fa-trash-alt"></i>}
-            <Link className="link" to="/posts?cat=Life">
-              Life
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            {user && (
-              <Link className="link" to="/upcategories">
-                <i className="catIcon far fa-edit"></i>
-              </Link>
-            )}
-            {user && <i className="catIcon far fa-trash-alt"></i>}
-            <Link className="link" to="/posts?cat=Music">
-              Music
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            {user && (
-              <Link className="link" to="/upcategories">
-                <i className="catIcon far fa-edit"></i>
-              </Link>
-            )}
-            {user && <i className="catIcon far fa-trash-alt"></i>}
-            <Link className="link" to="/posts?cat=Sport">
-              Sport
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            {user && (
-              <Link className="link" to="/upcategories">
-                <i className="catIcon far fa-edit"></i>
-              </Link>
-            )}
-            {user && <i className="catIcon far fa-trash-alt"></i>}
-            <Link className="link" to="/posts?cat=Style">
-              Style
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            {user && (
-              <Link className="link" to="/upcategories">
-                <i className="catIcon far fa-edit"></i>
-              </Link>
-            )}
-            {user && <i className="catIcon far fa-trash-alt"></i>}
-            <Link className="link" to="/posts?cat=Tech">
-              Tech
-            </Link>
-          </li>
-          <li className="sidebarListItem">
-            {user && (
-              <Link className="link" to="/upcategories">
-                <i className="catIcon far fa-edit"></i>
-              </Link>
-            )}
-            {user && <i className="catIcon far fa-trash-alt"></i>}
-            <Link className="link" to="/posts?cat=Food">
-              Food
-            </Link>
-          </li>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="sidebarItem">
