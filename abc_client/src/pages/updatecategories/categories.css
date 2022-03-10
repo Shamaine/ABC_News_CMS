@@ -1,0 +1,93 @@
+.categories {
+  display: flex;
+}
+
+.categoriesWrapper {
+  flex: 9;
+  padding: 20px;
+}
+
+.categoriesTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categoryInput {
+  font-size: 30px;
+  border: none;
+  padding: 20px;
+  width: 70vw;
+}
+
+.categoryInput::placeholder {
+  color: rgb(189, 185, 185);
+  font-weight: 400;
+}
+
+.categoryInput:focus {
+  outline-style: none;
+}
+
+.categoriesTitleUpdate {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: lightcoral;
+}
+
+.categoriesForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.categoriesPP {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.categoriesForm > label {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.categoriesForm > input {
+  color: gray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+.categoriesSubmitButton {
+  align-self: center;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: teal;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoriesSubmitButton:hover {
+  background-color: rgb(1, 114, 114);
+}
+
+@media only screen and (max-width: 380px) {
+  .categoriesWrapper {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .categoriesWrapper {
+    flex-direction: column;
+  }
+}

@@ -14,6 +14,27 @@
   object-fit: cover;
 }
 
+.singlePostContainer {
+  position: relative;
+}
+
+.singlePostBanner {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  bottom: 3px;
+  left: 0px;
+  background-color: red;
+}
+
+.singlePostBannerText {
+  font-family: "Josefin Sans", Arial, Helvetica, sans-serif;
+  font-size: 45px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: white;
+}
+
 .singlePostTitle {
   text-align: center;
   margin: 10px;
@@ -47,7 +68,7 @@
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
 }
 
-.singlePostAuthor{
+.singlePostAuthor {
   margin-left: 5px;
 }
 

@@ -1,5 +1,5 @@
 .post {
-  width: 480px;
+  width: 460px;
   margin: 0px 60px 40px 25px;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   position: relative;
 }
 .postImg {
-  width: 480px;
+  width: 460px;
   height: 280px;
   object-fit: cover;
   border-radius: 7px;

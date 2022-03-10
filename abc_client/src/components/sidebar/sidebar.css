@@ -30,14 +30,15 @@
   font-weight: 600;
 }
 
-.sidebarItem > img {
-  margin-top: 15px;
-  width: 250px;
-  height: 250px;
-}
-
-.sidebarItem > p {
-  padding: 30px;
+.addIcon {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  border: 1px solid;
+  border-radius: 50%;
+  color: rgb(247, 97, 11);
+  cursor: pointer;
+  margin-right: 8px;
 }
 
 .sidebarList {
@@ -45,6 +46,7 @@
   margin-bottom: 30px;
 }
 
+/*inline-block:the list arrange in horizontal */
 .sidebarListItem {
   display: inline-block;
   width: 50%;
@@ -52,11 +54,17 @@
   cursor: pointer;
 }
 
+.sidebarListItem :first-child {
+  color: teal;
+}
+.sidebarListItem :nth-child(2) {
+  color: tomato;
+}
 .catIcon {
   margin-left: 10px;
 }
 .link {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 .sidebarSocial {
   margin-top: 15px;
