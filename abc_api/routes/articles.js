@@ -3,7 +3,7 @@ const router = require("express").Router();
 const { verifyToken } = require("./verifyToken");
 
 //CREATE NEW ARTICLE
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   const newArticle = new Article(req.body);
   try {
     const savedArticle = await newArticle.save();
@@ -14,7 +14,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 //UPDATE ARTICLE
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const article = await Article.findById(req.params.id);
     //If the article belongs to the same journalist
@@ -43,7 +43,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 });
 
 //DELETE ARTICLE
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const article = await Article.findById(req.params.id);
     if (article.username === req.body.username) {

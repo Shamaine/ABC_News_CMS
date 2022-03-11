@@ -7,12 +7,14 @@ const userRoute = require("../routes/users");
 const articleRoute = require("../routes/articles");
 const categoryRoute = require("../routes/categories");
 const multer = require("multer");
+//Require this library in order to fetch image in local storage
 const path = require("path");
 
 dotenv.config();
 //We can send any json file and object
 app.use(express.json());
-
+//Retrieve images in images directory path
+app.use("/images", express.static(path.join(__dirname, "../images")));
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("DB Connection Successfull!"))
@@ -39,7 +41,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded");
 });
 
-app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/articles", articleRoute);

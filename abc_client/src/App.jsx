@@ -35,7 +35,7 @@ function App() {
         <Route path="/articles/:postId">
           <Single />
         </Route>
-        <Route path="/upcategories">
+        <Route path="/categories/:catId">
           <UPCategory />
         </Route>
         <Route path="/addcategories">

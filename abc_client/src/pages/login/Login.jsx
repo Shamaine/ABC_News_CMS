@@ -1,17 +1,22 @@
 import axios from "axios";
+import { useState } from "react";
 import { useContext, useRef } from "react";
 import { Context } from "../../context/Context";
 import "./login.css";
 
 export default function Login() {
+  const [error, setError] = useState(false);
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //call Login Start action
     dispatch({ type: "LOGIN_START" });
+    setError(false);
     try {
+      //Authenticate User from database
       const res = await axios.post("/auth/login", {
         username: userRef.current.value,
         password: passwordRef.current.value,
@@ -20,11 +25,13 @@ export default function Login() {
       window.location.replace("/");
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
+      setError(true);
     }
   };
   return (
     <div className="login">
       <span className="loginTitle">Login</span>
+
       <form className="loginForm" onSubmit={handleSubmit}>
         <label>Username</label>
         <input
@@ -43,6 +50,11 @@ export default function Login() {
         <button className="loginButton" type="submit" disabled={isFetching}>
           Login
         </button>
+        {error && (
+          <span style={{ color: "red", marginTop: "10px" }}>
+            Username or Password Doest not Exist !
+          </span>
+        )}
       </form>
     </div>
   );

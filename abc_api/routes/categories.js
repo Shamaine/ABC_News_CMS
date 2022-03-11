@@ -3,7 +3,7 @@ const Category = require("../models/Category");
 const { verifyToken } = require("./verifyToken");
 
 //CREATE
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   const newCat = new Category(req.body);
   try {
     const savedCat = await newCat.save();
@@ -14,7 +14,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 //UPDATE
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     //Update article by Id
     const updatedCategory = await Category.findByIdAndUpdate(
@@ -33,7 +33,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const category = await Category.findById(req.params.id);
 
@@ -52,6 +52,16 @@ router.delete("/:id", verifyToken, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const cats = await Category.find();
+    res.status(200).json(cats);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//GET  Categories by Id
+router.get("/:id", async (req, res) => {
+  try {
+    const cats = await Category.findById(req.params.id);
     res.status(200).json(cats);
   } catch (err) {
     res.status(500).json(err);

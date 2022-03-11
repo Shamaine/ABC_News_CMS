@@ -5,10 +5,12 @@ import "./topbar.css";
 
 export default function Topbar() {
   //Define Journalists and Admin as user Logged In status
+  //in local storage
   const { user, dispatch } = useContext(Context);
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
+  //const profilePic = "http://localhost:5000/images/";
   return (
     <div className="top">
       <div className="topLeft">
@@ -54,11 +56,7 @@ export default function Topbar() {
             style={{ textDecoration: "none", color: "inherit" }}
             to="/settings"
           >
-            <img
-              className="topImg"
-              src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-            />
+            <img className="topImg" src={user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">

@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import "./post.css";
 
 export default function Post({ article }) {
+  const publicPic = "http://localhost:5000/images/";
   return (
     <div className="post">
       <div className="container">
-        <img className="postImg" src={article.photo} alt="" />
+        <img className="postImg" src={publicPic + article.photo} alt="" />
         <div className="banner">
           <span className="bannerText">{article.banner}</span>
         </div>
