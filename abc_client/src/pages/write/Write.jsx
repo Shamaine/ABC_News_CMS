@@ -49,37 +49,41 @@ export default function Write() {
       )}
       <form className="writeForm" onSubmit={handleSubmit}>
         <div className="writeFormGroup">
-          <label htmlFor="fileInput">
-            <i className="writeIcon fas fa-plus"></i>
-          </label>
-          {/*Set File to see upload images on website*/}
-          <input
-            id="fileInput"
-            type="file"
-            style={{ display: "none" }}
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <input
-            className="writeInput"
-            placeholder="Title"
-            type="text"
-            autoFocus={true}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            className="writeInput"
-            placeholder="Banner"
-            type="text"
-            autoFocus={true}
-            onChange={(e) => setBanner(e.target.value)}
-          />
-          <input
-            className="writeInput"
-            placeholder="Categories"
-            type="text"
-            autoFocus={true}
-            onChange={(e) => setCategory(e.target.value)}
-          />
+          <div className="inputWrapper">
+            <label htmlFor="fileInput">
+              <i className="writeIcon fas fa-plus"></i>
+            </label>
+            {/*Set File to see upload images on website*/}
+
+            <input
+              id="fileInput"
+              type="file"
+              style={{ display: "none" }}
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+
+            <input
+              className="writeInput"
+              placeholder="Title"
+              type="text"
+              autoFocus={true}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+              className="writeInput"
+              placeholder="Banner"
+              type="text"
+              autoFocus={true}
+              onChange={(e) => setBanner(e.target.value)}
+            />
+            <input
+              className="writeInput"
+              placeholder="Categories"
+              type="text"
+              autoFocus={true}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </div>
         </div>
         <div className="writeFormGroup">
           <textarea

@@ -45,6 +45,7 @@ router.put("/:id", async (req, res) => {
 //DELETE ARTICLE
 router.delete("/:id", async (req, res) => {
   try {
+    //Find article in mongodb
     const article = await Article.findById(req.params.id);
     if (article.username === req.body.username) {
       try {

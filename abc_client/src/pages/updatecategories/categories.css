@@ -75,6 +75,20 @@
   align-items: center;
   justify-content: center;
 }
+.categoriesDeleteButton {
+  align-self: center;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: red;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+}
 
 .categoriesSubmitButton:hover {
   background-color: rgb(1, 114, 114);

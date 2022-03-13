@@ -1,13 +1,13 @@
 .write {
-  padding-top: 50px;
+  height: calc(100vh - 60px);
 }
 
 .writeImg {
-  margin-left: 150px;
-  width: 70vw;
-  height: 450px;
-  border-radius: 10px;
+  margin-top: 2rem;
+  width: 100%;
+  height: 400px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .writeForm {
@@ -15,7 +15,7 @@
 }
 
 .writeFormGroup {
-  margin-left: 150px;
+  margin: 16px 0;
   display: flex;
   align-items: center;
 }
@@ -57,23 +57,22 @@
 }
 
 .writeSubmit {
-  position: absolute;
-  top: 20px;
-  right: 50px;
-  color: white;
-  background-color: teal;
-  padding: 10px;
+  width: 100px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  background-color: teal;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.writeSubmit:hover {
+  transform: scale(1.07);
 }
 @media only screen and (max-width: 600px) {
-  .writeWrapper {
-    margin-top: 3rem;
-  }
   .writeImg {
     height: 30vh;
     margin-top: 10px;

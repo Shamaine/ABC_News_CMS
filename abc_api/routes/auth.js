@@ -3,8 +3,6 @@ const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
-const { verifyTokenAndAdmin } = require("./verifyToken");
-
 //***REGISTER***
 //Use Post request to
 //1)register new user (send username, email and password object to database()

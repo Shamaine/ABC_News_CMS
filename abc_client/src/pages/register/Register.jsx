@@ -30,37 +30,41 @@ export default function Register() {
   //onSubmit => When the form is submitted, execute function handleSubmit
   return (
     <div className="register">
-      <span className="registerTitle">Register</span>
-      <form className="registerForm" onSubmit={handleSubmit}>
-        <label>Username</label>
+      <div className="container">
+        <div className="formWrapper">
+          <span className="registerTitle">Register</span>
+          <form className="registerForm" onSubmit={handleSubmit}>
+            <label>Username</label>
 
-        <input
-          className="registerInput"
-          type="text"
-          placeholder="Enter your username..."
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label>Email</label>
-        <input
-          className="registerInput"
-          type="text"
-          placeholder="Enter your email..."
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label>Password</label>
-        <input
-          className="registerInput"
-          type="password"
-          placeholder="Enter your password..."
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="registerButton">Register</button>
-      </form>
-      {error && (
-        <span style={{ color: "red", marginTop: "10px" }}>
-          Something went wrong!
-        </span>
-      )}
+            <input
+              className="registerInput"
+              type="text"
+              placeholder="Enter your username..."
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <label>Email</label>
+            <input
+              className="registerInput"
+              type="text"
+              placeholder="Enter your email..."
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label>Password</label>
+            <input
+              className="registerInput"
+              type="password"
+              placeholder="Enter your password..."
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="registerButton">Register</button>
+          </form>
+          {error && (
+            <span style={{ color: "red", marginTop: "10px" }}>
+              Something went wrong!
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

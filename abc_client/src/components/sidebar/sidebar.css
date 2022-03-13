@@ -78,3 +78,15 @@
   font-size: 16px;
   margin-left: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebarSocial {
+    margin: 0px;
+  }
+}

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./topbar.css";
-
 export default function Topbar() {
   //Define Journalists and Admin as user Logged In status
   //in local storage
@@ -10,14 +9,17 @@ export default function Topbar() {
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
+
   //const profilePic = "http://localhost:5000/images/";
   return (
     <div className="top">
       <div className="topLeft">
-        <i className="topIcon fab fa-facebook-square"></i>
-        <i className="topIcon fab fa-instagram-square"></i>
-        <i className="topIcon fab fa-pinterest-square"></i>
-        <i className="topIcon fab fa-twitter-square"></i>
+        <div className="topLeftWrapper">
+          <i className="topIcon fab fa-facebook-square"></i>
+          <i className="topIcon fab fa-instagram-square"></i>
+          <i className="topIcon fab fa-pinterest-square"></i>
+          <i className="topIcon fab fa-twitter-square"></i>
+        </div>
       </div>
       <div className="topCenter">
         <ul className="topList">
@@ -36,11 +38,14 @@ export default function Topbar() {
             </li>
           )}
           {user && (
-            <li className="topListItem" onClick={handleLogout}>
-              {user && "LOGOUT"}
-            </li>
+            <Link className="link" to="/">
+              <li className="topListItem" onClick={handleLogout}>
+                {user && "LOGOUT"}
+              </li>
+            </Link>
           )}
-          {user && (
+          {/*Only Display Register Tab if user is an admin*/}
+          {user?.isAdmin && (
             <li className="topListItem">
               <Link className="link" to="/register">
                 REGISTER

@@ -1,15 +1,31 @@
 .register {
   height: calc(100vh - 50px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
     url("https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
   background-size: cover;
+  width: 100vw;
+  position: fixed;
+  top: 60px;
+  left: 0;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+  background-color: #fff;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.container {
+  margin-top: 50px;
 }
 
 .registerTitle {
@@ -48,4 +64,22 @@
   text-align: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .formWrapper {
+    margin-top: 0;
+    padding: 10px;
+  }
 
+  .registerForm {
+    margin: 5px 0px;
+  }
+
+  .registerForm input {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  .submitBtn {
+    padding: 5px 10px;
+  }
+}

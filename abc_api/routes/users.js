@@ -5,10 +5,8 @@ const { verifyTokenAndAdmin } = require("./verifyToken");
 const router = require("express").Router();
 
 //UPDATE
-//Only admin can access the update function
-//Update password when user id is verified,
-//if password exist on request, encrypt new password
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+
+router.put("/:id", async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -33,8 +31,8 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //DELETE
-//Only Admin can delete Journalist
-router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+
+router.delete("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     try {
@@ -50,9 +48,8 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //GET USER
-//Only Admin can access get Journalist function
-//Use verifyTokenAndAdmin to verify user is an admin
-router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
+
+router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, ...others } = user._doc;
@@ -63,10 +60,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //GET ALL USER
-//Only Admin can access get all user function
-//Use verifyTokenAndAdmin to verify user is an admin
-//sort in decending order by id -1
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);

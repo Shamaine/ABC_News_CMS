@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Context } from "../../context/Context";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./categories.css";
@@ -22,7 +23,8 @@ export default function UPCategory() {
       const res = await axios.get("/categories/" + path);
       //set categories data to be database data
       setCats(res.data);
-      console.log(res.data);
+      //Editable category name
+      setName(res.data.name);
     };
     getCats();
   }, [path]);
@@ -64,22 +66,25 @@ export default function UPCategory() {
             autoFocus={true}
             onChange={(e) => setName(e.target.value)}
           />
-
+        </form>
+        <div className="buttonGroup">
+          <Link className="link" to="/">
+            <button
+              className="categoriesSubmitButton"
+              type="submit"
+              onClick={handleUpdate}
+            >
+              Update
+            </button>
+          </Link>
           <button
-            className="categoriesSubmitButton"
-            type="submit"
-            onClick={handleUpdate}
-          >
-            Update
-          </button>
-          <button
-            className="categoriesSubmitButton"
+            className="categoriesDeleteButton"
             type="submit"
             onClick={handleDelete}
           >
             Delete
           </button>
-        </form>
+        </div>
       </div>
       <Sidebar />
     </div>

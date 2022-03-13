@@ -44,8 +44,8 @@
   cursor: pointer;
 }
 
-.topListItem:hover{
-    color: gray;
+.topListItem:hover {
+  color: gray;
 }
 
 .topImg {
@@ -61,4 +61,74 @@
   font-size: 18px;
   color: #666;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 375px) {
+  .topCenter {
+    padding: 0;
+    margin: 0;
+  }
+  .topListItem {
+    margin: 0px;
+    padding: 0px;
+    font-size: 10px;
+  }
+
+  .topImg {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .topCenter {
+    padding-left: 0px;
+  }
+  .topListItem {
+    margin-right: 8px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topLeft {
+    display: none;
+  }
+  .topCenter {
+    flex: 2;
+    padding: 0px 16px;
+    margin-left: 25px;
+  }
+
+  .topRight {
+    flex: 1.5;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topImg {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .topLeftWrapper {
+    margin-left: 16px;
+    margin-right: 0px;
+  }
+  .topIcon {
+    margin-right: 10px;
+  }
+}
+@media only screen and (max-width: 953px) {
+  .topLeftWrapper {
+    margin-left: 25px;
+    margin-right: 0px;
+  }
+  .topIcon {
+    margin-right: 16px;
+  }
 }

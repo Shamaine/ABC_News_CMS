@@ -31,6 +31,13 @@ export default function SinglePost() {
       const res = await axios.get("/articles/" + path);
       //set the page article to be the database article
       setArticles(res.data);
+      //set title,banner,category and details so that
+      //all this data will be fetch to text area for update
+      // allow text to be editable
+      setTitle(res.data.title);
+      setBanner(res.data.banner);
+      setCategory(res.data.categories);
+      setDetails(res.data.details);
     };
     getPost();
   }, [path]);
@@ -55,6 +62,8 @@ export default function SinglePost() {
         details,
         categories,
       });
+      //Refresh the page to see upadated content
+      window.location.reload();
       setUpdateMode(false);
     } catch (err) {}
   };
@@ -146,7 +155,7 @@ export default function SinglePost() {
             value={details}
             autoFocus={true}
             onChange={(e) => setDetails(e.target.value)}
-          />
+          ></textarea>
         ) : (
           <p className="singlePostDesc">{articles.details}</p>
         )}
