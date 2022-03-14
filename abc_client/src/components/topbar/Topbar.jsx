@@ -10,7 +10,7 @@ export default function Topbar() {
     dispatch({ type: "LOGOUT" });
   };
 
-  //const profilePic = "http://localhost:5000/images/";
+  const publicPic = "http://localhost:5000/images/";
   return (
     <div className="top">
       <div className="topLeft">
@@ -56,12 +56,8 @@ export default function Topbar() {
       </div>
       <div className="topRight">
         {user ? (
-          <Link
-            className="link"
-            style={{ textDecoration: "none", color: "inherit" }}
-            to="/settings"
-          >
-            <img className="topImg" src={user.profilePic} alt="" />
+          <Link className="link" to="/settings">
+            <img className="topImg" src={publicPic + user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">

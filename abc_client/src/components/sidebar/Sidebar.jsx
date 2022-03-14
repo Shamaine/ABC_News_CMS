@@ -31,8 +31,8 @@ export default function Sidebar() {
           NEWS CATEGORIES
         </span>
         <ul className="sidebarList">
-          {categories.map((c) => (
-            <li className="sidebarListItem">
+          {categories.map((c, index) => (
+            <li className="sidebarListItem" key={index}>
               {user && (
                 <Link className="link" to={`/categories/${c._id}`}>
                   <i className="catIcon far fa-edit"></i>

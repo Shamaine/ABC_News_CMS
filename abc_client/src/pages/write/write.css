@@ -86,6 +86,9 @@
     margin: 0px 0px 16px 0px;
     font-size: 18px;
   }
+  .writeText {
+    height: 30vh;
+  }
 
   .writeSubmit {
     padding: 5px 10px;

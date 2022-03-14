@@ -18,6 +18,7 @@ export default function Settings() {
     e.preventDefault();
     dispatch({ type: "UPDATE_START" });
     const updatedUser = {
+      //Refer back to api route file of update user by userId
       userId: user._id,
       username,
       email,
@@ -46,7 +47,6 @@ export default function Settings() {
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsUpdateTitle">Update Your Account</span>
-          <span className="settingsDeleteTitle">Delete Account</span>
         </div>
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
@@ -82,7 +82,7 @@ export default function Settings() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="settingsSubmit" type="submit">
+          <button className="settingsSubmitButton" type="submit">
             Update
           </button>
           {success && (
