@@ -10,12 +10,53 @@ export default function Settings() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
+
+    //validate username
+    if (!username) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Username cannot be blank");
+    } else if (username.length < 3) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Username must be more than 3 characters");
+    }
+    //validate email format
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!email) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Email cannot be blank");
+    } else if (!regex.test(email)) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Invalid email format!");
+    }
+    //validate password
+    if (!password) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError(" Password cannot be blank");
+    } else if (password.length < 3) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Password must be more than 3 characters");
+    }
+
     dispatch({ type: "UPDATE_START" });
     const updatedUser = {
       //Refer back to api route file of update user by userId
@@ -42,6 +83,7 @@ export default function Settings() {
       dispatch({ type: "UPDATE_FAILURE" });
     }
   };
+
   return (
     <div className="settings">
       <div className="settingsWrapper">
@@ -91,6 +133,9 @@ export default function Settings() {
             >
               Profile has been updated...
             </span>
+          )}
+          {error && (
+            <span style={{ color: "red", marginTop: "10px" }}>{error}</span>
           )}
         </form>
       </div>

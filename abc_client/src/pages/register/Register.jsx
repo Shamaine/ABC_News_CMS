@@ -7,10 +7,49 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  //preventDefault is used to prevent the webpage refresh whnen clicked
+
+  //preventDefault is used to prevent the webpage refresh when clicked
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
+    //validate username
+    if (!username) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Username cannot be blank");
+    } else if (username.length < 3) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Username must be more than 3 characters");
+    }
+    //validate email format
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!email) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Email cannot be blank");
+    } else if (!regex.test(email)) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Invalid email format!");
+    }
+    //validate password
+    if (!password) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError(" Password cannot be blank");
+    } else if (password.length < 3) {
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+      return setError("Password must be more than 3 characters");
+    }
+
     try {
       //Axios is used to make HTTP requests from node. js and perform CRUD operations.
       const res = await axios.post("/auth/register", {
@@ -42,6 +81,7 @@ export default function Register() {
               placeholder="Enter your username..."
               onChange={(e) => setUsername(e.target.value)}
             />
+
             <label>Email</label>
             <input
               className="registerInput"
@@ -56,12 +96,11 @@ export default function Register() {
               placeholder="Enter your password..."
               onChange={(e) => setPassword(e.target.value)}
             />
+
             <button className="registerButton">Register</button>
           </form>
           {error && (
-            <span style={{ color: "red", marginTop: "10px" }}>
-              Something went wrong!
-            </span>
+            <span style={{ color: "red", marginTop: "10px" }}>{error}</span>
           )}
         </div>
       </div>
